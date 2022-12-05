@@ -20,5 +20,6 @@ var MusicSchema = new Schema({
     required: 'Kindly enter url'
   }
 });
+MusicSchema.index({author: 'text', song: 'text'});
 
 module.exports = mongoose.model('Music', MusicSchema);
