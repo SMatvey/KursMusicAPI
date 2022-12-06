@@ -15,8 +15,8 @@ const swaggerOptions = {
     info: {
       version: "1.0.0",
       title: "Music API",
-      decriptions: "user",
-      server: ["https://127.0.0.1:3000/"]
+      description: "This is using our music library API on a web page.",
+      servers: ['https://127.0.0.1:3000/']
     },
   }, 
   apis: ["./routes/*.js"],

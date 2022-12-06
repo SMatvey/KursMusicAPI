@@ -6,7 +6,7 @@ module.exports = function(app) {
      * /music:
      *     get:
      *       tags: [music]
-     *       description: 'get all music'
+     *       description: 'Get all music'
      *       responses:
      *         200:
      *          description: "success"
@@ -18,16 +18,16 @@ module.exports = function(app) {
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'Jockii Druce'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Шо ви браття'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/jFIeP6xb0oE'
      *     post:
      *       tags: [music]
-     *       description: 'create new music'
+     *       description: 'Create new music'
      *       responses:
      *         200:
      *          description: "success"
@@ -49,10 +49,22 @@ module.exports = function(app) {
      * /music/{id}:
      *     get:
      *       tags: [music]
-     *       description: 'get music by id'
+     *       description: 'Get music by id'
+     *       parameters:
+     *         - name: 'id'
+     *           in: 'path'
+     *           description: 'ID of needed musics'
+     *           required: 'true'
+     *           schema:
+     *             type: 'integer'
+     *             format: 'int64'
      *       responses:
      *         200:
      *          description: "success"
+     *         400:
+     *          description: 'Invalid ID supplied'
+     *         404:
+     *          description: Music not found
      *         content:
      *           application/json:
      *           schema:
@@ -61,13 +73,14 @@ module.exports = function(app) {
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'Jockii Druce'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Шо ви браття'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/jFIeP6xb0oE'
+     *          
      *     put:
      *       tags: [music]
      *       description: 'Update a music by id'
@@ -91,7 +104,7 @@ module.exports = function(app) {
      *                 example: '678999'
      *     delete:
      *       tags: [music]
-     *       description: 'delete music by id'
+     *       description: 'Delete music by id'
      *       responses:
      *         200:
      *          description: "success"
@@ -160,7 +173,7 @@ module.exports = function(app) {
      * /music/count-music:
      *     get:
      *       tags: [Counting]
-     *       description: 'count all music'
+     *       description: 'Count all music'
      *       responses:
      *         200:
      *          description: "success"
@@ -183,7 +196,7 @@ module.exports = function(app) {
      * /music/count-music/{Author}:
      *     get:
      *       tags: [Counting]
-     *       description: 'count music with certain author'
+     *       description: 'Count music with certain author'
      *       responses:
      *         200:
      *          description: "success"
