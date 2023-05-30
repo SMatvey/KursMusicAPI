@@ -6,330 +6,357 @@ module.exports = function(app) {
      * /music:
      *     get:
      *       tags: [music]
-     *       description: 'Get all music'
+     *       summary: Get all music
+     *       description: 'Отримати усі наявні записи'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
-     *              properties:
-     *               author:
-     *                 type: 'string'
-     *                 example: 'Jockii Druce'
-     *               song:
-     *                 type: 'string'
-     *                 example: 'Шо ви браття'
-     *               url_youtube:
-     *                 type: 'string'
-     *                 example: 'https://youtu.be/jFIeP6xb0oE'
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
+     *             properties:
+     *              author:
+     *                type: 'string'
+     *                example: 'Jockii Druce'
+     *              song:
+     *                type: 'string'
+     *                example: 'Шо ви браття'
+     *              url_youtube:
+     *                type: 'string'
+     *                example: 'https://youtu.be/jFIeP6xb0oE'
+     *                
      *     post:
      *       tags: [music]
-     *       description: 'Create new music'
+     *       summary: Create new music
+     *       description: 'Створити новий запис в базі даних'
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'author'
+     *           description: 'author of needed musics'
+     *           required: 'true'
+     *           type: 'string'
+     *         - in: 'path'
+     *           name: 'song'
+     *           description: 'song name of needed musics'
+     *           required: 'true'
+     *           type: 'string'
+     *         - in: 'path'
+     *           name: 'url_youtube'
+     *           description: 'youtube link of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
-     *              properties:
-     *               author:
-     *                 type: 'string'
-     *                 example: '123'
-     *               song:
-     *                 type: 'string'
-     *                 example: '456'
-     *               url_youtube:
-     *                 type: 'string'
-     *                 example: '678999'
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
+     *             properties:
+     *              author:
+     *                type: 'string'
+     *                example: '123'
+     *              song:
+     *                type: 'string'
+     *                example: '456'
+     *              url_youtube:
+     *                type: 'string'
+     *                example: '678999'
      * /music/{id}:
      *     get:
      *       tags: [music]
-     *       description: 'Get music by id'
+     *       summary: Get music
+     *       description: 'Отримати запис по його id'
      *       parameters:
-     *         - name: 'id'
-     *           in: 'path'
+     *         - in: 'path'
+     *           name: 'id'
      *           description: 'ID of needed musics'
      *           required: 'true'
-     *           schema:
-     *             type: 'integer'
-     *             format: 'int64'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         400:
-     *          description: 'Invalid ID supplied'
-     *         404:
-     *          description: Music not found
-     *         content:
+     *           description: "Success"
      *           application/json:
      *           schema:
      *             type: 'array'
      *             items:
      *              properties:
      *               author:
-     *                 type: 'string'
-     *                 example: 'Jockii Druce'
+     *                type: 'string'
+     *                example: 'Jockii Druce'
      *               song:
-     *                 type: 'string'
-     *                 example: 'Шо ви браття'
+     *                type: 'string'
+     *                example: 'Шо ви браття'
      *               url_youtube:
-     *                 type: 'string'
-     *                 example: 'https://youtu.be/jFIeP6xb0oE'
+     *                type: 'string'
+     *                example: 'https://youtu.be/jFIeP6xb0oE'
+     *         400:
+     *           description: 'Invalid ID supplied'
+     *         404:
+     *           description: Music not found
      *          
      *     put:
      *       tags: [music]
-     *       description: 'Update a music by id'
+     *       summary: Update a music
+     *       description: 'Оновити запис по його id'
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'id'
+     *           description: 'ID of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
+     *           description: "Success"
      *           application/json:
      *           schema:
      *             type: 'array'
      *             items:
      *              properties:
      *               author:
-     *                 type: 'string'
-     *                 example: '123'
+     *                type: 'string'
+     *                example: 'Jockii Druce'
      *               song:
-     *                 type: 'string'
-     *                 example: '456'
+     *                type: 'string'
+     *                example: 'Шо ви браття'
      *               url_youtube:
-     *                 type: 'string'
-     *                 example: '678999'
+     *                type: 'string'
+     *                example: 'https://youtu.be/jFIeP6xb0oE'
+     *         400:
+     *          description: 'Invalid ID supplied'
+     * 
      *     delete:
      *       tags: [music]
-     *       description: 'Delete music by id'
+     *       summary: Delete music
+     *       description: 'Видалити запис по його id'
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'id'
+     *           description: 'ID of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
+     *           description: "Success"
      *           application/json:
      *           schema:
      *             type: 'array'
      *             items:
      *              properties:
-     *               author:
+     *               message:
      *                 type: 'string'
-     *                 example: '123'
-     *               song:
-     *                 type: 'string'
-     *                 example: '456'
-     *               url_youtube:
-     *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'This music successfully deleted'
+     *         400:
+     *          description: 'Invalid ID supplied'
+     *           
      * 
      * /music/sort-AtoZ:
      *     get:
      *       tags: [Sorting]
-     *       description: 'Sort alphabetically by author'
+     *       summary: Sort alphabetically
+     *       description: 'Відсорувати записи за алфавітним порядком їх авторів'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'Alice Change'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Не вистачає кисню'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/0WPIeNKy38U'
      * 
      * /music/sort-ZtoA:
      *     get:
      *       tags: [Sorting]
-     *       description: 'Sort in reverse alphabetical order by author'
+     *       summary: Sort in reverse alphabetical order
+     *       description: 'Відсорувати записи за оберненим алфавітним порядком їх авторів'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'ЮЮ'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Чорна хмара'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/u47f5d5RymE'
      * 
      * /music/count-music:
      *     get:
      *       tags: [Counting]
-     *       description: 'Count all music'
+     *       summary: Count all music
+     *       description: 'Порахувати усі записи в базі'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
-     *               author:
+     *               message:
      *                 type: 'string'
-     *                 example: '123'
-     *               song:
-     *                 type: 'string'
-     *                 example: '456'
-     *               url_youtube:
-     *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'Number of all songs in the database - 35'
+     *               
      * 
      * /music/count-music/{Author}:
      *     get:
      *       tags: [Counting]
-     *       description: 'Count music with certain author'
+     *       summary: Count music with certain author
+     *       description: 'Отримати кількість всіх записів з конкретним автором'
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'Author'
+     *           description: 'Author of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
-     *               author:
+     *               message:
      *                 type: 'string'
-     *                 example: '123'
-     *               song:
-     *                 type: 'string'
-     *                 example: '456'
-     *               url_youtube:
-     *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'Number of songs with this author in the database - 1'
+     *         400:
+     *          description: 'Invalid Author supplied'
+     *           
      * 
      * /music/music-by-random:
      *     get:
      *       tags: [Search]
-     *       description: 'Find a random music'
+     *       summary: Find a random music
+     *       description: 'Знайти випадковий запис в базі'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'Tapolsky'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Відбій тривоги'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/_n2B62diZ20'
      * 
-     * /music/search-author/{nameOfAuthor}:
+     * /music/search-music/{nameOfText}:
      *     get:
      *       tags: [Search]
-     *       description: 'Find music by partial author name'
+     *       summary: Find music by partial author or song name
+     *       description: 'Отримати запис за частковим автором або назвою пісні'
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'nameOfText'
+     *           description: 'Author or song name of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'Tapolsky'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Відбій тривоги'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
-     * 
-     * /music/search-song/{nameOfSong}:
-     *     get:
-     *       tags: [Search]
-     *       description: 'Find music by partial name of song'
-     *       responses:
-     *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
-     *              properties:
-     *               author:
-     *                 type: 'string'
-     *                 example: '123'
-     *               song:
-     *                 type: 'string'
-     *                 example: '456'
-     *               url_youtube:
-     *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/_n2B62diZ20'
+     *         400:
+     *          description: 'Invalid text supplied'
      * 
      * /music/music-by-author/{Author}:
      *     get:
      *       tags: [Search]
-     *       description: 'Find music by full author name'
+     *       summary: Find music by full author name
+     *       description: "Знайти запис за повним ім'ям автора"
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'Author'
+     *           description: 'Author of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'KOLA'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Чи разом?'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/zziNhc6ECZA'
+     *         400:
+     *          description: 'Invalid author supplied'
+     *           
      * 
      * /music/music-by-song/{Song}:
      *     get:
      *       tags: [Search]
-     *       description: 'Find music by full name of song'
+     *       summary: Find music by full name of song
+     *       description: 'Знайти запис за повную назвою пісні'
+     *       parameters:
+     *         - in: 'path'
+     *           name: 'Song'
+     *           description: 'Song name of needed musics'
+     *           required: 'true'
+     *           type: 'string'
      *       responses:
      *         200:
-     *          description: "success"
-     *         content:
-     *           application/json:
-     *           schema:
-     *             type: 'array'
-     *             items:
+     *          description: "Success"
+     *          application/json:
+     *          schema:
+     *            type: 'array'
+     *            items:
      *              properties:
      *               author:
      *                 type: 'string'
-     *                 example: '123'
+     *                 example: 'OTOY'
      *               song:
      *                 type: 'string'
-     *                 example: '456'
+     *                 example: 'Енемі'
      *               url_youtube:
      *                 type: 'string'
-     *                 example: '678999'
+     *                 example: 'https://youtu.be/E4vki5kUaVI'
+     *         400:
+     *          description: 'Invalid song supplied'
      */
 
     // todoList Routes
@@ -357,11 +384,8 @@ module.exports = function(app) {
     app.route('/music/count-music/:musicAuthor')
       .get(musicController.list_music_count_by_author);
 
-    app.route('/music/search-author/:nameOfAuthor')
-    .get(musicController.search_music_by_author);
-
-    app.route('/music/search-song/:nameOfSong')
-      .get(musicController.search_music_by_song);
+    app.route('/music/search-music/:nameOfText')
+    .get(musicController.search_music_by_text);
 
     app.route('/music/music-by-author/:musicAuthor')
       .get(musicController.find_author_music);
